@@ -93,8 +93,7 @@ export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 ## 1.14. 编译nccl-test需要mpi, nccl和cuda的库和头文件路径
 '''
 查询mpi的库和头文件
-mpicc --show  
-gcc -I/usr/local/include -L/usr/local/lib -Wl,-rpath -Wl,/usr/local/lib -Wl,--enable-new-dtags -lmpi  
+gcc -I/opt/hpcx/ompi/include -I/opt/hpcx/ompi/include/openmpi -I/opt/hpcx/ompi/include/openmpi/opal/mca/hwloc/hwloc201/hwloc/include -I/opt/hpcx/ompi/include/openmpi/opal/mca/event/libevent2022/libevent -I/opt/hpcx/ompi/include/openmpi/opal/mca/event/libevent2022/libevent/include -L/opt/hpcx/ompi/lib -Wl,-rpath -Wl,/opt/hpcx/ompi/lib -Wl,--enable-new-dtags -lmpi 
 
 查询nccl的库和头文件  
 locate nccl.h  
@@ -107,26 +106,27 @@ locate libnccl.so
 
 ## 1.15. 编译nccl-test 
 '''  
-export MPI_HOME=/usr/local/mpi  
-export MPI_INCLUDE=/usr/local/include  
-export MPI_HOME=/usr/local/lib  
+export MPI_HOME=/opt/hpcx/ompi/ 
+export MPI_INCLUDE=/opt/hpcx/ompi/include  
 export CUDA_HOME=/usr/local/cuda  
-export NCCL_HOME=/usr/lib/x86_64-linux-gnu/  
+export NCCL_HOME=/usr/lib/x86_64-linux-gnu  
 
 make MPI=1 MPI_HOME=$MPI_HOME CUDA_HOME=$CUDA_HOME NCCL_HOME=$NCCL_HOME CXXFLAGS="-I$MPI_INCLUDE"  
+or
+make MPI=1 MPI_HOME=$MPI_HOME CUDA_HOME=$CUDA_HOME NCCL_HOME=$NCCL_HOME INCLUDES="-I$MPI_INCLUDE"
 '''
 
 
 
 
 ## 1.16. 创建新的镜像 （docker commit <CONTAINER_ID_OR_NAME> <NEW_IMAGE_NAME>:<TAG>）
-'''
-sudo docker commit  nccl nccl_rdma01:min
-'''
+'''   
+sudo docker commit  nccl nccl_rdma01:min   
+'''   
 
 
 ## 1.17. 使用docker安装的参考文档
-'''
+'''  
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
-'''
+'''  

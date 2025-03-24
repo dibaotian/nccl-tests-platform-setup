@@ -61,8 +61,8 @@
   运行 source ~/.bashrc  
   '''
   
-  ## setup
-  ### 安装driver
+  ## 1.3. setup
+  ### 1.3.1. 安装driver
   '''  
   参考文档 
   - https://docs.nvidia.com/cuda/cuda-installation-guide-linux/  （TL;TR）  
@@ -100,7 +100,7 @@
   运行nvidia-smi  验证是否安装成功 
   ![alt text](image.png)
 
-  ### 安装cuda
+  ### 1.3.2. 安装cuda
   '''  
   确定和driver匹配的cuda版本  
   - https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html  
@@ -149,7 +149,7 @@
   Build cuda_12.8.r12.8/compiler.35404655_0  
 
 
-  ### 安装nccl
+  ### 1.3.3. 安装nccl
   '''
   检查使用CUDA12.2的版本，需要查找并安装支持 CUDA 12.2 的 NCCL 版本  
   使用 apt-cache 搜索可用版本  
@@ -177,7 +177,7 @@
   '''
 
 
-  ### 安装 nccl test
+  ### 1.3.4. 安装 nccl test
   '''
   git clone https://github.com/NVIDIA/nccl-tests.git  
   cd nccl-test  
@@ -239,7 +239,7 @@
 
   ![alt text](image-1.png) 
 
-  ## 注意事项
+  ## 1.4. 注意事项
   - 所有机器上的软件硬件版本（包括OS,kernel, 编译器，编译脚本，gpu driver, cuda, nccl, nccl-tests,rdma-core, rdma driver ）必须相同
   - 使用MPIRUN的情况下，所有机器上对应的nccl-tests以及其他使用到的文件和文件夹的位置必须相同
   - 如果发现nccl-tests 中函数执行的行为在两台机器中不同  
